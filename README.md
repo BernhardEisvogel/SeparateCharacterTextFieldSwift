@@ -1,5 +1,5 @@
 # SeparateCharacterTextFieldSwift
-Easy Solution for a SwiftUI TextFieldView that shows each letter separately
+Easy Solution for a SwiftUI TextFieldView that shows each letter separately.
 
 It really bugged me that this isn't already implemented in Swift. The new Textfield looks like this and can be used as if it was a "normal" textfield.
 
