@@ -25,9 +25,6 @@ struct SeparateCharacterTextField: View {
     init(_ text:Binding<String>){
         _text = text
     }
-    init(text:Binding<String>){
-        _text = text
-    }
     
     func replace(_ myString: String, _ index: Int, _ newChar: Character) -> String {
         var chars = Array(myString)     // gets an array of characters
