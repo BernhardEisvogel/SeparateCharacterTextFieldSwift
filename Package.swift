@@ -4,7 +4,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "SeparateCharacterTextField",
+    name: "SeparateCharacter",
     platforms: [
         .macOS(.v14),
         .iOS(.v15),
