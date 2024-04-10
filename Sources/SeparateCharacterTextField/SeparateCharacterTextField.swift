@@ -32,7 +32,7 @@ public struct SeparateCharacterTextField<Content: View>: View {
         return modifiedString
     }
 
-    var body: some View {
+    public var body: some View {
         HStack {
             ForEach(0..<maxFields, id: \.self) { i  in
                 TextField("", text: Binding<String>(
