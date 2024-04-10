@@ -13,7 +13,7 @@ public struct SeparateCharacterTextField<Content: View>: View {
     @Binding private var text:String
     let content: Content
     
-    init(text:Binding<String>, @ViewBuilder background: () -> Content){
+    public init(text:Binding<String>, @ViewBuilder background: () -> Content){
         _text = text
         self.content = background()
     }
@@ -84,7 +84,7 @@ public struct SeparateCharacterTextField<Content: View>: View {
 
 extension SeparateCharacterTextField where Content == StrokeShapeView<RoundedRectangle, Color, EmptyView>{
     // This initialiser is for the standard constructor and gives a default value for the ViewBuilder
-    init(_ text:Binding<String>){
+    public init(_ text:Binding<String>){
         self.init(text: text, background: {
                 RoundedRectangle(cornerSize: .init(width: 5, height: 5))
                     .stroke(Color.black, lineWidth: 3.0)
