@@ -6,7 +6,7 @@
 
 import SwiftUI
 
-struct SeparateCharacterTextField<Content: View>: View {
+public struct SeparateCharacterTextField<Content: View>: View {
     
     private var maxFields:Int = 8
     @FocusState private var focus: Int?
