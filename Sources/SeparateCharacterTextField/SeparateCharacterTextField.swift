@@ -49,32 +49,33 @@ public struct SeparateCharacterTextField<Content: View>: View {
                         text = replace(text, i, newValueP.last ?? " ")
                     })
                 )
-                .onSubmit {
-                    focus = nil
-                }
-                .onKeyPress(action: {
-                    a in
-                    handleKey(key: a, focus:$focus, position: i)
-                    return .ignored
-                })
-                
+                .onAppear {keyboardSubscribe(i)}
                .focused($focus, equals: i)
-                    .textFieldStyle(.plain)
-                    .frame(width: 50, height: 50)
-                    .background(content: {
-                        content
-                    })
+                .textFieldStyle(.plain)
+                .frame(width: 50, height: 50)
+                .background(content: {
+                    content
+                })
             }
         }.textFieldStyle(RoundedBorderTextFieldStyle())
         .multilineTextAlignment(.center)
     }
     
-    private func handleKey(key : KeyPress, focus:FocusState<Int?>.Binding, position:Int = 0){
-        if (key.key == .delete || key.key == .clear || key.key == .deleteForward || key.key.character.description == "\u{7F}"){
+    private func keyboardSubscribe(_ i:Int) {
+        NSEvent.addLocalMonitorForEvents(matching: .keyDown) { (aEvent) -> NSEvent? in
+            if focus == i {
+                handleKey(key:aEvent.keyCode, focus:$focus, position: i)
+            }
+            return aEvent
+        }
+    }
+    
+    private func handleKey(key : UInt16, focus:FocusState<Int?>.Binding, position:Int = 0){
+        if (key == 51){// delete = 51
             focus.wrappedValue = max(position - 1 , 0)
-        }else if (key.key == KeyEquivalent.upArrow || key.key == .leftArrow){
+        }else if (key == 126 || key == 123){// left =123,up, 126
             focus.wrappedValue = max(position - 1 , 0)
-        }else if (key.key == KeyEquivalent.downArrow || key.key == .rightArrow){
+        }else if (key == 125 || key == 124){// down == 125, right == 124
             focus.wrappedValue = min(position + 1 , maxFields)
         }else{
             focus.wrappedValue = min(position + 1, maxFields)
