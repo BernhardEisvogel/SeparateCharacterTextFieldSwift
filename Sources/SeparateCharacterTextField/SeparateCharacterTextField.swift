@@ -83,6 +83,7 @@ public struct SeparateCharacterTextField<Content: View>: View {
     }
 }
 
+@available(iOS 17.0, *)
 extension SeparateCharacterTextField where Content == StrokeShapeView<RoundedRectangle, Color, EmptyView>{
     // This initialiser is for the standard constructor and gives a default value for the ViewBuilder
     public init(_ text:Binding<String>){
